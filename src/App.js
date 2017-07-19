@@ -1,7 +1,8 @@
 import React from 'react'
+import { Route } from 'react-router-dom';
+
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-
 import Search from './searchPage';
 import Shelves from './shelves';
 
@@ -45,26 +46,28 @@ class BooksApp extends React.Component {
       const book_updated = {...book, shelf: nextShelf};
       books = [...books, book_updated];
       this.setState({books})
-    })
+    });
+    console.log(this.state.books);
   };
 
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
+        <Route path="/search" exact render={() => (
             <Search
                 searchResults={this.state.searchResults}
                 showSearch={this.showSearch}
                 updateShelf={this.updateShelf}
                 searchBooks={this.searchBooks}
             />
-        ) : (
+        )}/>
+        <Route path="/" exact render={() => (
             <Shelves
                 showSearch={this.showSearch}
                 updateShelf={this.updateShelf}
                 books={this.state.books}
             />
-        )}
+        )}/>
       </div>
     )
   }

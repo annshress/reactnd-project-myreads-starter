@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import SearchBar from './SearchBar';
 import Book from "./book";
@@ -13,7 +14,7 @@ class Search extends Component {
         return (
         <div className="search-books">
             <div className="search-books-bar">
-                <a className="close-search" onClick={() => showSearch(false)}>Close</a>
+                <Link className="close-search" to="/">Close</Link>
                 <SearchBar
                     searchBooks={searchBooks}
                 />
